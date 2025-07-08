@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: fiapfood
+    ports:
+      - 5432:5432
+
+  rabbitmq:
+    image: fiapfood/rabbitmq:3-management-delayed
+    build:
+      context: ./localstack
+      dockerfile: ./Dockerfile.rabbitmq
+    container_name: fiapfood-rabbitmq
+    hostname: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: 'fiapfood'
+      RABBITMQ_DEFAULT_PASS: 'fiapfood'
+    ports:
+      - 5672:5672
+      - 15672:15672

@@ -1,0 +1,43 @@
+services:
+  fiap-food-preparation:
+    image: fiapfood/preparation:latest
+    build:
+      context: ..
+      args:
+        target: 'fiap-food-preparation'
+    restart: 'on-failure'
+    environment:
+      NODE_ENV: 'development'
+      APP_NAME: 'FiapFoodPreparation'
+      APP_DESCRIPTION: 'Payments Component for Fiap Food'
+      APP_VERSION: '1.0.0'
+      PORT: '3000'
+      LOG_LEVEL: 'debug'
+      LOG_FORMAT: 'pretty' # pretty | json
+      TRAFFIC_INSPECTION_HTTP: 'all' # inbound|outbound|all|none
+      TRAFFIC_INSPECTION_AMQP: 'all' # inbound|outbound|all|none
+      ROUTE_PREFIX: ''
+      POSTGRES_URL: 'postgresql://postgres:fiapfood@postgres:5432/postgres?ApplicationName=FiapFoodPreparation'
+      AMQP_URL: 'amqp://fiapfood:fiapfood@rabbitmq:5672'
+    command: sh -c "sleep 10 && npm run start:prod"
+    ports:
+      - 5000:3000
+    depends_on: [postgres, rabbitmq]
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: fiapfood
+    ports:
+      - 5432:5432
+  rabbitmq:
+    image: fiapfood/rabbitmq:3-management-delayed
+    build:
+      context: .
+      dockerfile: ./Dockerfile.rabbitmq
+    # hostname: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: 'fiapfood'
+      RABBITMQ_DEFAULT_PASS: 'fiapfood'
+    ports:
+      - 5672:5672
+      - 15672:15672
