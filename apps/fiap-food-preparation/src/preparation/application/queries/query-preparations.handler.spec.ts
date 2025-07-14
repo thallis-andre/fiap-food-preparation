@@ -7,8 +7,8 @@ import { TypeormPreparationSchema } from '../../infra/persistance/typeorm/prepar
 import { QueryPreparationsInput } from '../dtos/query-preparations.input';
 import { QueryPreparationsHandler } from './query-preparations.handler';
 import {
-    QueryPreparationsQuery,
-    QueryPreparationsResult,
+  QueryPreparationsQuery,
+  QueryPreparationsResult,
 } from './query-preparations.query';
 
 describe('QueryPreparationsHandler', () => {

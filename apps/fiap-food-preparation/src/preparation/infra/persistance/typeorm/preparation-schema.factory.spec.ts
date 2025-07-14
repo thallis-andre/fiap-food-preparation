@@ -3,8 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { randomUUID } from 'crypto';
 import { Preparation } from '../../../domain/entities/preparation.aggregate';
 import {
-    EPreparationStatus,
-    PreparationStatusFactory,
+  EPreparationStatus,
+  PreparationStatusFactory,
 } from '../../../domain/values/preparation-status.value';
 import { TypeormPreparationSchemaFactory } from './preparation-schema.factory';
 import { TypeormPreparationSchema } from './preparation.schema';

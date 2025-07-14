@@ -17,7 +17,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: fiap-food-preparation-app
-          image: gm50x/fiap-food-preparation:latest
+          image: ghcr.io/gm50x/fiap-food-preparation:latest
           imagePullPolicy: Always
           envFrom:
             - secretRef:

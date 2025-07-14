@@ -7,8 +7,8 @@ import { TypeormPreparationSchema } from '../../infra/persistance/typeorm/prepar
 import { Preparation } from '../dtos/preparation.dto';
 import { GetPreparationByIdHandler } from './get-preparation-by-id.handler';
 import {
-    GetPreparationByIdQuery,
-    GetPreparationByIdResult,
+  GetPreparationByIdQuery,
+  GetPreparationByIdResult,
 } from './get-preparation-by-id.query';
 
 describe('GetPreparationByIdHandler', () => {
