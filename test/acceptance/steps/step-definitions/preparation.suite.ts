@@ -13,7 +13,7 @@ export class PreparationSuite {
   @Given('a preparation was requested')
   async createTarget() {
     const res = await this.http.axiosRef.post(
-      'http://localhost:5000/v1/preparations',
+      'http://localhost:3000/v1/preparations',
       {
         orderId: randomUUID(),
         items: ['XFood'],
@@ -25,7 +25,7 @@ export class PreparationSuite {
   @When('a colaborator advances its status')
   async advanceTargetStatus() {
     await this.http.axiosRef.patch(
-      `http://localhost:5000/v1/preparations/${this.targetId}/advance`,
+      `http://localhost:3000/v1/preparations/${this.targetId}/advance`,
       {},
       { headers: { Authorization: fakeToken.admin } },
     );
@@ -34,12 +34,12 @@ export class PreparationSuite {
   @When('a colaborator advances its status twice')
   async advanceTargetStatusTwice() {
     await this.http.axiosRef.patch(
-      `http://localhost:5000/v1/preparations/${this.targetId}/advance`,
+      `http://localhost:3000/v1/preparations/${this.targetId}/advance`,
       {},
       { headers: { Authorization: fakeToken.admin } },
     );
     await this.http.axiosRef.patch(
-      `http://localhost:5000/v1/preparations/${this.targetId}/advance`,
+      `http://localhost:3000/v1/preparations/${this.targetId}/advance`,
       {},
       { headers: { Authorization: fakeToken.admin } },
     );
@@ -48,7 +48,7 @@ export class PreparationSuite {
   @Then('the preparation gets started')
   async verifyStarted() {
     const res = await this.http.axiosRef.get(
-      `http://localhost:5000/v1/preparations/${this.targetId}`,
+      `http://localhost:3000/v1/preparations/${this.targetId}`,
     );
 
     const targetStatus = res.data.status;
@@ -58,7 +58,7 @@ export class PreparationSuite {
   @Then('the preparation gets completed')
   async verifyCompleted() {
     const res = await this.http.axiosRef.get(
-      `http://localhost:5000/v1/preparations/${this.targetId}`,
+      `http://localhost:3000/v1/preparations/${this.targetId}`,
     );
 
     const targetStatus = res.data.status;
